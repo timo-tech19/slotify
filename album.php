@@ -1,6 +1,5 @@
 <?php
-    include('includes/header.php');
-    // include('includes/handlers/includeFiles.php');
+    include('includes/handlers/includeFiles.php');
     if(isset($_GET['id'])) {
 
         $album = new Album($con, $_GET['id']);
@@ -25,7 +24,7 @@
             <p><?php echo  $album->getNumberOfSongs(); ?> songs</p>
         </div>
     </div>
-    <div class="songs">
+    <div class="songs" data-songs='<?php echo json_encode($songIds); ?>'>
         <h3>Tracks</h3>
         <hr>
         <ul class="tracks">
@@ -74,64 +73,3 @@
 
         </ul>
     </div>
-    <script >
-        // const optionsList = document.querySelector('.options-list');
-        tempSongIds = <?php echo json_encode($songIds); ?>;
-        domReady(() => {;
-            const optionsList = document.querySelectorAll('.options-list');
-
-            document.querySelector('.tracks').addEventListener('click', (e) => {
-                if(e.target.classList.contains('play'))
-                    setTrack(e.target.dataset.id, tempSongIds, true );
-            });
-
-            const hideOptions = () => {
-                optionsList.forEach((el) => {
-                    el.style.display = 'none';
-                })
-            }
-            
-            document.querySelectorAll('.toggle-options').forEach((el) => {
-                el.addEventListener('click', (e) => {
-                    // console.log(el.classList.contains('toggle-options'));
-                    el.nextElementSibling.style.display = 'block';
-                })
-            })
-            document.querySelector('.albums').addEventListener('scroll', hideOptions);
-            document.body.addEventListener('click', (e) => {
-                if(e.target.className !== 'options-list' && !e.target.classList.contains('toggle-options') && !e.target.closest('.options-list')) {
-                    hideOptions();
-                }
-            });
-
-            document.querySelectorAll('.playlist-options').forEach(el => {
-                el.addEventListener('change', async (e) => {
-                    const songId = e.target.closest('.track').dataset.song;
-                    const playlistId = e.target[e.target.selectedIndex].value;
-
-                    var formData = new FormData();
-                    formData.append('songId', songId);
-                    formData.append('playlistId', playlistId);
-
-                    // Get SONG
-                    const response = await fetch('includes/handlers/api/addToPlaylist.php', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const error = await response.text();
-                    if(error) {
-                        alert(`Error: ${error}`);
-                    }
-
-                    hideOptions();
-                    e.target.selectedIndex = 0;
-                })
-            })
-                    
-        })
-    </script>
-
-<?php 
-    include('includes/footer.php');
-?>

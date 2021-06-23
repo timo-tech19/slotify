@@ -1,6 +1,10 @@
 <?php 
-    include('includes/handlers/includeFiles.php');
-    // session_destroy();
+     include('includes/config.php');
+     include('includes/classes/User.php');
+     include('includes/classes/Artist.php');
+     include('includes/classes/Album.php');
+     include('includes/classes/Song.php');
+     include('includes/classes/Playlist.php');
 
     // Check session data and redirect if it does not exist
     if(isset($_SESSION['userLoggedIn'])) {
@@ -21,7 +25,6 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-    <script src="assets/js/script.js"></script>
 </head>
 <body data-userloggedin="<?php echo $userLoggedIn ?>">
     <!-- <h1>Welcome to Slotify <?php echo $userLoggedIn ?></h1> -->

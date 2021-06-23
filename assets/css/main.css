@@ -89,37 +89,6 @@ button:hover,
     justify-content: space-between;
 }
 
-/* .navbar .search input {
-    background-color: transparent;
-    border: 1px solid #fff;
-    border-right: transparent;
-    border-radius: 50px 0 0 50px;
-    padding: 1rem;
-    flex: 1;
-    outline: none;
-    color: #fff;
-    font-size: 1.6rem;
-    transition: all .5s ease;
-}
-
-.navbar .search input:focus,
-.navbar .search input:focus ~ ion-icon {
-    border-color: #fe9600;
-}
-
-.navbar .search input:focus ~ ion-icon {
-    color: #fe9600;
-} */
-
-/* .navbar .search ion-icon {
-    font-size: 2.4rem;
-    padding: .7rem;
-    border-radius: 0 50px 50px 0;
-    border: 1px solid #fff;
-    border-left: none;
-    transition: all .5s ease;
-} */
-
 .search ion-icon {
     font-size: 2.5rem;
 }
@@ -153,16 +122,8 @@ button:hover,
     transition: all .5s ease;
 }
 
-.navbar .nav li:last-child a {
-    color: #777;
-}
-
 .navbar .nav li a:hover {
     border-bottom: 2px solid #fe9600;
-}
-
-.navbar .nav li:last-child a:hover {
-    border:none;
 }
 
 .player {
@@ -282,10 +243,11 @@ button:hover,
 .albums {
     background-color: #1d1d1d;
     flex: 1;
-    height: 80vh;
+    height: 75vh;
     color: #fff;
     padding: 2rem;
     overflow-y: scroll;
+    padding-bottom: 5rem;
 }
 
 .albums h1 {
@@ -371,11 +333,13 @@ button:hover,
     margin-top: 2rem;
 }
 
-.tracks {
+.tracks,
+.artist-list {
     list-style: none;
 }
 
-.track {
+.track,
+.artist-item {
     display: flex;
     padding: 1rem 2rem;
     margin-bottom: .2rem;
@@ -385,8 +349,15 @@ button:hover,
     transition: all .5s ease;
 }
 
-.track:first-child {
+.track:first-child,
+.artist-item:first-child {
     border-top: 2px solid #1a1a1a;
+}
+
+.artist-item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.7rem;
 }
 
 .track span {
@@ -438,7 +409,8 @@ button:hover,
     visibility: visible;
 }
 
-.track:hover {
+.track:hover,
+.artist-item:hover {
     background-color: #0c0c0c;
 }
 
@@ -567,6 +539,16 @@ button:hover,
 
 .message {
     color: #fe9600;
+}
+
+.artists {
+    margin-top: 4rem;
+}
+
+.albums-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 

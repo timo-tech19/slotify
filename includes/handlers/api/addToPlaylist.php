@@ -11,7 +11,6 @@
         $order = $row['playlistOrder'];
 
         $query = mysqli_query($con, "INSERT INTO playlistSongs VALUES ('', '$songId', '$playlistId', '$order')");
-
     } else {
         echo 'Playlist or Song not recieved';
     }

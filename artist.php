@@ -1,5 +1,5 @@
-<?php include('includes/header.php');
-// include('includes/handlers/includeFiles.php');
+<?php 
+include('includes/handlers/includeFiles.php');
 
     if(isset($_GET['id'])) {
 
@@ -10,16 +10,17 @@
         header('Location: index.php');
     }
 
+    $songIds = $artist->getSongIds();
+
 ?>
     <h1><?php echo $artist->getName(); ?></h1>
     <button class='artist-play orange-btn'>Play</button>
     <hr>
-    <div class="songs">
+    <div class="songs" data-songs='<?php echo  json_encode($songIds); ?>'>
         <h3>Tracks</h3>
         <hr>
         <ul class="tracks">
             <?php 
-                $songIds = $artist->getSongIds();
                 $counter = 1;
                 foreach ($songIds as $songId) {
                     $albumSong = new Song($con, $songId);
@@ -46,19 +47,6 @@
 
         </ul>
     </div>
-    <script>
-        tempSongIds = <?php echo json_encode($songIds); ?>;
-        domReady(() => {
-            document.querySelector('.tracks').addEventListener('click', (e) => {
-                console.log(e.target);
-                if(e.target.classList.contains('play'));
-                setTrack(e.target.dataset.id, tempSongIds, true );
-            });
-
-            document.querySelector('.artist-play').addEventListener('click', () => playFirstSong(tempSongIds));
-        }) 
-    </script>
-
         <div class="artist-albums">
             <h3>Albums</h3>
             <hr>
@@ -80,5 +68,3 @@
                 ?>
             </div>
         </div>
-
-<?php include('includes/footer.php'); ?>

@@ -1,6 +1,6 @@
 <?php
-    include('includes/header.php');
-    // include('includes/handlers/includeFiles.php');
+    include('includes/handlers/includeFiles.php');
+
     if(isset($_GET['id'])) {
 
         $playlist = new Playlist($con, $_GET['id']);
@@ -26,7 +26,7 @@
             <button class='delete-playlist' data-playlistId='<?php echo $playlist->getId(); ?>'>Delete Playlist</button>
         </div>
     </div>
-    <div class="songs">
+    <div class="songs" data-songs='<?php echo json_encode($songIds); ?>'>
         <h3>Tracks</h3>
         <hr>
         <ul class="tracks">
@@ -75,41 +75,3 @@
 
         </ul>
     </div>
-    <script >
-        tempSongIds = <?php echo json_encode($songIds); ?>;
-        domReady(() => {;
-            document.querySelector('.tracks').addEventListener('click', (e) => {
-                if(e.target.classList.contains('play'))
-                    setTrack(e.target.dataset.id, tempSongIds, true );
-            });
-
-            document.querySelectorAll('.remove-song').forEach(el => {
-                el.addEventListener('click', async (e) => {
-                    const songId = e.target.closest('.track').dataset.song;
-                    const playlistId = e.target.dataset.playlist;
-
-                    var formData = new FormData();
-                    formData.append('songId', songId);
-                    formData.append('playlistId', playlistId);
-
-                    // Get SONG
-                    const response = await fetch('includes/handlers/api/removeFromPlaylist.php', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const error = await response.text();
-                    if(error) {
-                        alert(`Error: ${error}`);
-                    }
-
-                    // hideOptions();
-                    e.target.closest('.track').remove();
-                })
-            })
-        })
-    </script>
-
-<?php 
-    include('includes/footer.php');
-?>

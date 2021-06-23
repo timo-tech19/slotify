@@ -1,5 +1,5 @@
 <?php
-    include('includes/header.php');
+    include('includes/handlers/includeFiles.php');
 ?>
 
 <h1>Playlists</h1>
@@ -24,13 +24,3 @@
         <?php }
     ?>
 </div>
-
-
-<script>
-    const playlistButton = document.querySelector('.playlist-btn');
-    playlistButton.addEventListener('click', createPlaylist);
-</script>
-
-<?php 
-    include('includes/footer.php');
-?>

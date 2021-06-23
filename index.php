@@ -1,9 +1,5 @@
 <?php
-    if(!isset($_GET['ajax'])) {
-        include('includes/header.php');
-    } else {
-        include('includes/handlers/includeFiles.php');
-    }
+    include('includes/handlers/includeFiles.php');
 ?>
     <h1>Music You Might Like</h1>
     <hr>
