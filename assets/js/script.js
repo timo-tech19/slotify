@@ -63,6 +63,8 @@ let _logoutBtn = document.querySelector('.logout-btn');
 let _searchInput = document.querySelector('.search-input');
 
 const loadPage = async  (url) => {
+
+    if(timer) clearTimeout(timer);
     
     let encodedUrl;
     if(url.indexOf('?') === -1) {
